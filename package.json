@@ -1,0 +1,6 @@
+{
+  "name": "critterdex", "version": "1.0.0", "private": true, "type": "module",
+  "description": "An original retro creature exploration game using the OpenAI Decisions API.",
+  "scripts": {"start": "node server.mjs", "test": "node --test", "check": "node --check server.mjs && node --check public/app.js && node --test"},
+  "engines": {"node": ">=22"}, "license": "MIT"
+}
