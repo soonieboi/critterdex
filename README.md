@@ -1,6 +1,6 @@
 # CritterDex ✦
 
-An original retro handheld game and an inspectable integration of **OpenAI’s actual Decisions API**. Roam four pixel regions, find eight unusual creatures, scan their clues, and build a collectible field guide.
+An original retro handheld game and an inspectable integration of **OpenAI’s actual Decisions API**. Explore a scrolling 72 × 48 pixel world, follow trails through four biomes and twelve encounter landmarks, scan eight unusual creatures, and build a collectible field guide.
 
 This standalone project is separate from Fieldwork. It runs without a build step, runtime dependencies, database, external art, external fonts, or a paid service. All critters, names, sprites, map art, and field notes are original.
 
@@ -17,10 +17,12 @@ Open **http://127.0.0.1:4317**. The server binds only to loopback. If that port 
 - Move with **WASD / arrow keys** or the touch direction pad.
 - Use the console’s **A button** or **Z / Space / Enter** to search, scan, then log a discovery.
 - Use **B / X / Escape** to leave an encounter or close a menu.
-- **F** opens the field guide; **H** opens Help.
+- **M** opens the full world map; **F** opens the field guide; **H** opens Help.
 - Menus pause exploration. Motion can be switched off and respects the system’s reduced-motion preference. This build has no audio.
 
-Search favors unlogged creatures in your current region, then unseen discoveries elsewhere. Scan results determine the species added to your guide. A repeated species updates its entry without duplicating it. Collect all eight to complete the adventure. There is no timer, combat, or loss condition. Your collection is **session only**: reloading or confirming Reset Adventure clears it.
+Start at the central field station. Fernwood lies northwest, Moonlit Grove northeast, Dewdrop Marsh southwest, and Pebble Ridge southeast. Pale trails and wooden bridges connect every area. The camera follows the player and stops at world edges; the minimap shows your position and current camera frame. Open WORLD MAP for a larger overview and landmark guide.
+
+Sparkling named landmarks feature specific local creatures. Searching elsewhere favors unlogged creatures from your current region; species do not appear in unrelated regions. The station is a safe hub without encounters. Scan results determine the species added to your guide. A repeated species updates its entry without duplicating it. Collect all eight to complete the guide, then keep exploring and rescanning without losing your collection. There is no timer, combat, or loss condition. Your collection is **session only**: reloading or confirming Reset Adventure clears it.
 
 ## Demo versus actual API
 
@@ -60,7 +62,7 @@ The key stays server-side. Refused questions remain individually visible. A refu
 npm run check
 ```
 
-The 14 offline tests cover exploration bounds, all eight discoveries, duplicate handling, reset state, deterministic demo behavior, official request/response schema subset, fractional scores, refusals, malformed responses, upstream failure, key isolation, origin/Host guards, body limits, static file restrictions, and request concurrency/rate bounds.
+The 17 offline tests cover reachability of every walkable tile and all twelve sites, exhaustive collisions, camera edges and viewport sizes, minimap coordinates, regional encounters, all eight discoveries, continued exploration after completion, duplicate handling, reset state, deterministic demo behavior, official request/response schema subset, fractional scores, refusals, malformed responses, upstream failure, key isolation, origin/Host guards, body limits, static file restrictions, and request concurrency/rate bounds.
 
 An optional browser check uses an **already installed Chromium** without downloading software:
 
@@ -68,12 +70,12 @@ An optional browser check uses an **already installed Chromium** without downloa
 CHROME_BIN=/path/to/chromium node scripts/browser-check.mjs
 ```
 
-Run the preview first. The browser check verifies gameplay, keyboard/menu/mobile flows, collection, inspector, reset confirmation, reduced motion, and mocked live errors/refusals. It does not use a real key or OpenAI. See [docs/validation.md](docs/validation.md).
+Run the preview first. The browser check travels through every region, collects all eight species, verifies four camera edges and minimap alignment, tests actual touch input and 320px/390px layouts, and checks map/menu navigation, collection preservation, inspector, reset confirmation, reduced motion, and mocked live errors/refusals. It does not use a real key or OpenAI. See [docs/validation.md](docs/validation.md).
 
 ## Project map
 
-- `public/game.js` — original creature data, sprites, exploration and collection state
-- `public/pixel.js` — code-drawn pixel map, encounters, sprites and thumbnails
+- `public/game.js` — original creature data, 72 × 48 world geometry, encounter sites, camera/minimap coordinates and collection state
+- `public/pixel.js` — scrolling biome renderer, cached minimap, full map, encounters, sprites and thumbnails
 - `public/app.js` — controls, scanner flow, menus, Help and API inspector
 - `lib/decisions.mjs` — official request builder, deterministic demo, strict response validation, live transport
 - `server.mjs` — fixed static allowlist, loopback/Origin guards, bounded requests, isolated server key

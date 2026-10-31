@@ -10,6 +10,12 @@ The browser submits exactly one integer: `{encounter: 0}` through `{encounter: 7
 
 The three questions are independent evaluations of the same evidence. They are not chained and do not assume another answer.
 
+## World navigation and encounter selection
+
+The expanded 72 × 48 world has four distinct biomes and twelve named encounter landmarks. Camera scrolling, the minimap, full-map navigation, collisions, and trail traversal are entirely local and trigger no API calls. Each landmark features a creature from its own region; off-landmark searches favor unlogged local species. The station is an encounter-free hub. The eight species definitions and their request schema are unchanged.
+
+World position and collection stay intact when menus open, regions change, an encounter is left, or the viewport resizes. Completing the guide does not lock exploration. Collections remain session-only and reset only on reload or an explicitly confirmed adventure reset.
+
 ## Answers and gameplay mappings
 
 | Name | API type | Mapping |
