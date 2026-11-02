@@ -84,6 +84,12 @@ Run the preview first. The browser check travels through every region, collects 
 
 This is a local educational project. No deployment has been created. Public hosting would require authentication, per-user spending limits, and deployment configuration.
 
+## Credits & contact
+
+Created by [@soonieboi](https://github.com/soonieboi), with development assistance from Codex. Creature designs, pixel art and field notes are original to CritterDex. Optional live scans use the OpenAI Decisions API.
+
+For feedback or bug reports, use [this repository’s Issues page](https://github.com/soonieboi/critterdex/issues), or visit the [creator’s GitHub profile](https://github.com/soonieboi). Please keep API keys and other secrets out of issues.
+
 ## Official references
 
 Schema verified on **31 October 2026** against the [Decisions guide](https://developers.openai.com/api/docs/guides/decisions) and [Create a decision reference](https://developers.openai.com/api/reference/resources/decisions/methods/create). API behavior and model availability may change.
